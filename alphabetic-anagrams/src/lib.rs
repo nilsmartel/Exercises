@@ -13,7 +13,7 @@ fn list_position(word: &str) -> u128 {
             if spotlight == chars[i] {
                 transmutations *= i as u128 + 1;
 
-                buf.remove(i);
+                buf.remove(0);
                 chars.remove(i);
 
                 break;
@@ -21,7 +21,7 @@ fn list_position(word: &str) -> u128 {
         }
     }
 
-    return transmutations;
+    transmutations
 }
 
 
@@ -29,20 +29,21 @@ fn list_position(word: &str) -> u128 {
 mod tests {
     use super::*;
 
-    #[test]
-    fn a1() {
-        let cases = [
-            ("ABAB", 2),
-            ("AAAB", 1),
-            ("BAAA", 4),
-            ("QUESTION", 24572),
-            ("BOOKKEEPER", 10743),
-            ("bcad", 2),
-            ("bca", 2),
-        ];
-
-        for (i, o) in cases {
-            assert_eq!(list_position(i), o);
-        }
+    macro_rules! testcase {
+        ($name:ident, $inp:expr, $outp:expr) => {
+           #[test]
+           fn $name () {
+                assert_eq!(list_position($inp), $outp);
+           } 
+        };
     }
+
+    testcase!(a1, "ABAB", 2);
+    testcase!(a2, "AAAB", 1);
+    testcase!(a3_1, "DABC", 8);
+    testcase!(a3, "BAAA", 4);
+    testcase!(a4, "QUESTION", 24572);
+    testcase!(a5, "BOOKKEEPER", 10743);
+    testcase!(a6, "bcad", 2);
+    testcase!(a7, "bca", 2);
 }
