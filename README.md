@@ -1,3 +1,3 @@
-# Codewars
+# Exercises
 
-Solutions to codewars problems
+this is just solving some code problems for fun
